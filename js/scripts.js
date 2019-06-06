@@ -15,32 +15,24 @@ var divide = function(number1, number2) {
 }
 
 $(document).ready(function() {
-	$("form#add").submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($("#add1").val());
-		var number2 = parseInt($("#add2").val());
-		var result = add(number1, number2);
-		$("#output").text(result);
-	});
-	$("form#subtract").submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($("#sub1").val());
-		var number2 = parseInt($("#sub2").val());
-		// var result = add(number1, number2);
-		$("#output").text(subtract(number1, number2));
-	});
-	$("form#multiply").submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($("#mul1").val());
-		var number2 = parseInt($("#mul2").val());
-		// var result = add(number1, number2);
-		$("#output").text(multiply(number1, number2));
-	});
-	$("form#divide").submit(function(event) {
-		event.preventDefault();
-		var number1 = parseInt($("#div1").val());
-		var number2 = parseInt($("#div2").val());
-		// var result = add(number1, number2);
-		$("#output").text(divide(number1, number2));
-	});
+  $("form#calculator").submit(function() {
+    event.preventDefault();
+    var number1 = parseInt($("#input1").val());
+    var number2 = parseInt($("#input2").val());
+    var operator = $("input:radio[name=operator]:checked").val();
+
+		var calculator = function(number1, number2, operator){
+			if (operator === "add") {
+				return add(number1, number2);
+			} else if (operator === "subtract") {
+				return subtract(number1, number2);
+			} else if (operator === "multiply") {
+				return multiply(number1, number2);
+			} else if (operator === "divide") {
+				return divide(number1, number2);
+			}
+		}
+
+    $("#output").text(calculator(number1, number2, operator));
+  });
 });
